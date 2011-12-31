@@ -29,14 +29,11 @@ def updatePhermone():
 				antGrid.storedInformation[count][1] = sPhermoneLevel - 1
 			count += 1
 			
-			
 			backlog = len(antGrid.storedIndex)
 			
 			if backlog > 40000:
 				antGrid.storedIndex.pop(0)
 				antGrid.storedInformation.pop(0)
-
-	
 
 ant 	= Ant(DEFAULT_COORDINATES)
 antGrid	= Grid(ant.GRID_WIDTH, ant.GRID_HEIGHT)
@@ -46,17 +43,14 @@ running = True
 
 herd = [Ant(DEFAULT_COORDINATES) for i in range(0, NUMBER_ANTS)]
 
-count = 0
+iterations = 1 		# for debugging purposes
 
-iterations = 1
 while running:
 		
 	displayAnts()
 	updatePhermone()
 	
 	for ant in herd:
-		
-		
 		
 		directions	= ant.getPossibleDirections()
 		count = 0
@@ -77,6 +71,8 @@ while running:
 		
 		antGrid.storePoint(ant.location, True, 250, 0)
 				
+#	if iterations > 3:		# stop simulation after x iterations
+#		running = False		# (for debugging purposes)
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -85,5 +81,3 @@ while running:
 	pygame.display.flip()
 	
 	iterations += 1
-
-
